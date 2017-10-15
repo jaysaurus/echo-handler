@@ -1,13 +1,13 @@
 {
   "name": "echo-handler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A NodeJS i18n-friendly way of managing messages stored in discrete JSON files",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "jest": {
-     "collectCoverage": true
+    "collectCoverage": true
   },
   "scripts": {
     "test": "jest",
