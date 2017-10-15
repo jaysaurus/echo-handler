@@ -3,12 +3,10 @@ const EchoHandlerFactory = require('./lib/EchoHandlerFactory');
 function validateClientOptions (opts) {
   return typeof opts === 'object' ? opts : {};
 }
-
 module.exports = {
   configure: (clientOptions) => {
     let parentOps = {
       i18n: 'en',
-      defaultLayout: 'default',
       logger: console,
       messageFolder: undefined,
       regionalizer: (item, language) => {

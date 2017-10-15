@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1508087704233" clover="3.2.0">
-  <project timestamp="1508087704233" name="All files">
+<coverage generated="1508106175989" clover="3.2.0">
+  <project timestamp="1508106175989" name="All files">
     <metrics statements="43" coveredstatements="43" conditionals="20" coveredconditionals="20" methods="16" coveredmethods="16" elements="79" coveredelements="79" complexity="0" loc="43" ncloc="43" packages="2" files="3" classes="3">
       <package name="echo-handler">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
@@ -8,12 +8,12 @@
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
           <line num="1" count="1" type="stmt"/>
           <line num="4" count="2" type="cond" truecount="2" falsecount="0"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="9" count="2" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
           <line num="15" count="1" type="stmt"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="21" count="2" type="stmt"/>
-          <line num="22" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="stmt"/>
         </file>
       </package>
       <package name="echo-handler.lib">
