@@ -1,0 +1,36 @@
+{
+  "name": "echo-handler",
+  "version": "1.0.0",
+  "description": "A NodeJS i18n-friendly way of managing messages stored in discrete JSON files",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "jest": {
+     "collectCoverage": true
+  },
+  "scripts": {
+    "test": "jest",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaysaurus/echo-handler.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "i18n",
+    "printf",
+    "logging"
+  ],
+  "author": "Jay Edwards <the.jaysaurus@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaysaurus/echo-handler/issues"
+  },
+  "homepage": "https://github.com/jaysaurus/echo-handler#readme",
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "nodemon": "^1.12.1"
+  }
+}

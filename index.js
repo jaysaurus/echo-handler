@@ -1,7 +1,7 @@
 const EchoHandlerFactory = require('./lib/EchoHandlerFactory');
 
 function validateClientOptions (opts) {
-  return typeof opts === 'object' ? opts : { i18n: 'en' };
+  return typeof opts === 'object' ? opts : {};
 }
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
       i18n: 'en',
       defaultLayout: 'default',
       logger: console,
-      messageFolder: `./i18n`,
+      messageFolder: undefined,
       regionalizer: (item, language) => {
         return item.replace(
           /([a-z\d._-]+$)/gi,
