@@ -5,6 +5,11 @@ jest.mock(
   () => { return { "test": "this is a test message" }; },
   { virtual: true });
 
+jest.mock(
+  '../i18n/en/FakeMessages.json',
+  () => { return { "testModifiedPrefix": "this is a test message" }; },
+  { virtual: true });
+
 describe('EchoHandlerFactory Test', () => {
   const mockLogger = spy => {
     return {
@@ -70,4 +75,41 @@ describe('EchoHandlerFactory Test', () => {
       expect(e.message).toMatch('Failed to load a/b/c/FakeMessages.');
     }
   });
+
+  test('EchoHandlerFactory will use english for its internal messages if i18n code is not listed', () => {
+    conf.i18n = 'xx';
+    const echoFactory = new EchoHandlerFactory(conf);
+    try { // load in a value that will force a default message to throw:
+      echoFactory.raw('Echo is not instantiated');
+    } catch (e) {
+      expect(e.message).toMatch('uninitialised echo-handler call detected')
+    }
+  });
+
+  test('EchoHandlerFactory calls "en/FakeMessages.json" when the regionalizer is modified', () => {
+    conf.regionalizer = (item, language) => {
+      return item.replace(
+        /([a-z\d._-]+$)/gi,
+        (match, fileName) => { return `${language}/${fileName}`; });
+    }
+    const echoFactory = new EchoHandlerFactory(conf);
+    const echo = echoFactory.load('FakeMessages', 'en');
+    expect(echo.raw('testModifiedPrefix')).toBe('this is a test message');
+  })
+
+  test('EchoHandlerFactory uses default regionalizer rather than custom regionalizer when calling its own messages', () => {
+    conf.regionalizer = (item, language) => {
+      return item.replace(
+        /([a-z\d._-]+$)/gi,
+        (match, fileName) => { return `${language}/${fileName}`; });
+    }
+    const echoFactory = new EchoHandlerFactory(conf);
+    try { // load in a value that will force a default message to throw:
+      echoFactory.raw('Echo is not instantiated');
+    } catch (e) {
+      expect(e.message).toMatch('uninitialised echo-handler call detected')
+    }
+  })
 });
+// () => { return { "test": "this is a test message" }; },
+// { virtual: true })
