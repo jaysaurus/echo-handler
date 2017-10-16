@@ -113,7 +113,7 @@ let echoHandler =
 these are the default configuration options for this application
 ```javascript
 {
-  i18n: 'en', // Default language used for internal error messages. Currently only supports 'en' foreign error message contributions welcome, PLEASE FORK!    
+  i18n: 'en', // Default language used if client doesn't provide language code. Will also try to set echo-handler's own messages to that language (PLEASE FORK AND ADD MESSAGES!)    
   logger: console, // supply an object that has a .log(string) method and echo.log() will use that instead.
   messageFolder: undefined, // MANDATORY: the absolute location of your message files
   regionalizer: (item, language) => { // this is the default regionalizer
