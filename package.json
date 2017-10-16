@@ -1,6 +1,6 @@
 {
   "name": "echo-handler",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A NodeJS i18n-friendly way of managing messages stored in discrete JSON files",
   "main": "index.js",
   "directories": {
