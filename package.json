@@ -10,7 +10,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest __tests__/*.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
   "repository": {

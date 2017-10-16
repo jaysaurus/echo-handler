@@ -45,7 +45,7 @@ describe('EchoHandlerFactory Test', () => {
       try {
         echoFactory[dummy]('mock', 'mock')
       } catch (e) {
-        expect(e.message).toMatch('uninitialised echo-handler call detected. Your definition must be initialised first: echo.init(\'someMessagesFile\')');
+        expect(e.message).toMatch('uninitialised echo-handler call detected. Your definition must be initialised first: echo.load(\'someMessagesFile\')');
       }
     });
   });

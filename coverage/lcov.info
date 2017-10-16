@@ -1,5 +1,5 @@
 TN:
-SF:/home/jay/codeBase/npm/echo-handler/index.js
+SF:/home/jay/codeBase/node/echo-handler/echo-handler/index.js
 FN:3,validateClientOptions
 FN:7,(anonymous_1)
 FN:12,(anonymous_2)
@@ -26,7 +26,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/home/jay/codeBase/npm/echo-handler/lib/EchoHandler.js
+SF:/home/jay/codeBase/node/echo-handler/echo-handler/lib/EchoHandler.js
 FN:2,EchoHandler
 FN:4,(anonymous_1)
 FN:8,(anonymous_2)
@@ -74,7 +74,7 @@ BRF:7
 BRH:7
 end_of_record
 TN:
-SF:/home/jay/codeBase/npm/echo-handler/lib/EchoHandlerFactory.js
+SF:/home/jay/codeBase/node/echo-handler/echo-handler/lib/EchoHandlerFactory.js
 FN:3,EchoHandlerFactory
 FN:6,(anonymous_1)
 FN:18,(anonymous_2)

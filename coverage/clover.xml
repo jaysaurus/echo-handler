@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1508106175989" clover="3.2.0">
-  <project timestamp="1508106175989" name="All files">
+<coverage generated="1508147184727" clover="3.2.0">
+  <project timestamp="1508147184727" name="All files">
     <metrics statements="43" coveredstatements="43" conditionals="20" coveredconditionals="20" methods="16" coveredmethods="16" elements="79" coveredelements="79" complexity="0" loc="43" ncloc="43" packages="2" files="3" classes="3">
       <package name="echo-handler">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
-        <file name="index.js" path="/home/jay/codeBase/npm/echo-handler/index.js">
+        <file name="index.js" path="/home/jay/codeBase/node/echo-handler/echo-handler/index.js">
           <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
           <line num="1" count="1" type="stmt"/>
           <line num="4" count="2" type="cond" truecount="2" falsecount="0"/>
@@ -18,7 +18,7 @@
       </package>
       <package name="echo-handler.lib">
         <metrics statements="35" coveredstatements="35" conditionals="18" coveredconditionals="18" methods="12" coveredmethods="12"/>
-        <file name="EchoHandler.js" path="/home/jay/codeBase/npm/echo-handler/lib/EchoHandler.js">
+        <file name="EchoHandler.js" path="/home/jay/codeBase/node/echo-handler/echo-handler/lib/EchoHandler.js">
           <metrics statements="18" coveredstatements="18" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
           <line num="2" count="3" type="stmt"/>
           <line num="3" count="11" type="stmt"/>
@@ -39,7 +39,7 @@
           <line num="31" count="11" type="stmt"/>
           <line num="32" count="11" type="stmt"/>
         </file>
-        <file name="EchoHandlerFactory.js" path="/home/jay/codeBase/npm/echo-handler/lib/EchoHandlerFactory.js">
+        <file name="EchoHandlerFactory.js" path="/home/jay/codeBase/node/echo-handler/echo-handler/lib/EchoHandlerFactory.js">
           <metrics statements="17" coveredstatements="17" conditionals="11" coveredconditionals="11" methods="5" coveredmethods="5"/>
           <line num="1" count="2" type="stmt"/>
           <line num="3" count="2" type="stmt"/>
