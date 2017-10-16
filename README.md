@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jaysaurus/echo-handler.svg?branch=master)](https://travis-ci.org/jaysaurus/echo-handler)
+
 # echo-handler
 A NodeJS i18n-friendly way of managing messages stored in simple JSON files.  Allows you to store i18n message files (delineated by international language code) in one discrete location and access them by language based on preferences at either compiletime or runtime.  For example, say your web app has detected that a user's IP is in Spain, perhaps you want to serve them corresponding 'es' (language code for 'Español') messages rather than the standard 'en' ('English').  Setting things up is a piece of cake!
 
