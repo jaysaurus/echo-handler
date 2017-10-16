@@ -1,3 +1,4 @@
+const defaultRegionalizer = require('./lib/defaultRegionalizer');
 const EchoHandlerFactory = require('./lib/EchoHandlerFactory');
 
 function validateClientOptions (opts) {
@@ -9,11 +10,7 @@ module.exports = {
       i18n: 'en',
       logger: console,
       messageFolder: undefined,
-      regionalizer: (item, language) => {
-        return item.replace(
-          /([a-z\d._-]+$)/gi,
-          (match, fileName) => { return `${language}.${fileName}`; });
-      }
+      regionalizer: defaultRegionalizer
     };
 
     let conf = Object.assign(parentOps, validateClientOptions(clientOptions));
