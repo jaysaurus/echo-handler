@@ -2,8 +2,10 @@ language: node_js
 node_js:
   - "8"
 deploy:
-  provider: pages
+  provider: npm
   skip_cleanup: true
-  github_token: GITHUB_TOKEN # Set in travis-ci.org dashboard
+  github_token: GITHUB_TOKEN
   on:
     branch: master
+  email: EMAIL_ADDRESS
+  api_key: NPM_TOKEN
