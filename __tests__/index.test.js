@@ -20,5 +20,10 @@ jest.mock(
       } catch (e) {
         expect(e.message).toMatch('echo-handler\'s messageFolder configuration property is missing or invalid.');
       }
+    });
+
+    test('that the factoryOverride property will return a raw echoHandler', () => {
+      let rawEcho = index.configure({ factoryOverride: './i18n/a/b/c/en.FakeMessages.json' });
+      expect(rawEcho.raw('test')).toBe('this is a test message');
     })
   });

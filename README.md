@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jaysaurus/echo-handler.svg?branch=master)](https://travis-ci.org/jaysaurus/echo-handler)
+
 # echo-handler
 A NodeJS i18n-friendly way of managing messages stored in simple JSON files.  Allows you to store i18n message files (delineated by international language code) in one discrete location and access them by language based on preferences at either compiletime or runtime.  For example, say your web app has detected that a user's IP is in Spain, perhaps you want to serve them corresponding 'es' (language code for 'Español') messages rather than the standard 'en' ('English').  Setting things up is a piece of cake!
 
@@ -108,14 +110,26 @@ let echoHandler =
       });
     });
 ```
+#### Overriding the EchoHandlerFactory
+In more complex builds, there may be instances where you do not wish to have the module build you an echoHandler via its factory. For example, say you have a separate set of messages in a different location that are only seen by a small number of stakeholders.
+
+A raw EchoHandler can be instantiated as below:
+```javascript
+let rawEcho = require('echo-handler').configure({ factoryOverride: `${__dirname}/otherFolder/en.someExampleMessages.json` });
+rawEcho.log('someMessage');
+```
+- The full file path must be provided and no provision will be made for delineating i18n so use this functionality carefully!
+- A logger object may still be provided in the configuration object.  All other properties will be ignored.
 
 #### Default Configuration
 these are the default configuration options for this application
 ```javascript
 {
+  factoryOverride: undefined, // if supplied with an absolute file path, this will allow you to return a new instance of Echo-Handler, see above.
   i18n: 'en', // Default language used if client doesn't provide language code. Will also try to set echo-handler's own messages to that language (PLEASE FORK AND ADD MESSAGES!)    
   logger: console, // supply an object that has a .log(string) method and echo.log() will use that instead.
   messageFolder: undefined, // MANDATORY: the absolute location of your message files
+
   regionalizer: (item, language) => { // this is the default regionalizer
     return item.replace(
       /([a-z\d._-]+$)/gi,
