@@ -3,6 +3,7 @@ node_js:
   - "8"
 deploy:
   provider: npm
+  github_token: GITHUB_TOKEN
   email: the.jaysaurus@gmail.com
   api_key:
 api_key:
