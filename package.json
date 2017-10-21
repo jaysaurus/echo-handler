@@ -5,10 +5,7 @@
   "main": "index.js",
   "directories": {
     "lib": "lib"
-  },
-  "jest": {
-    "collectCoverage": true
-  },
+  },  
   "scripts": {
     "test": "jest",
     "test-watch": "nodemon --exec 'npm test'"
