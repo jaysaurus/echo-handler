@@ -5,6 +5,7 @@ const EchoHandler = require('./lib/EchoHandler');
 function validateClientOptions (opts) {
   return typeof opts === 'object' ? opts : {};
 }
+
 module.exports = {
   configure: (clientOptions) => {
     let parentOps = {
