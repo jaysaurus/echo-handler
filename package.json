@@ -32,5 +32,8 @@
   "devDependencies": {
     "jest": "^21.2.1",
     "nodemon": "^1.12.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
