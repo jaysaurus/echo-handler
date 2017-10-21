@@ -1,11 +1,11 @@
 {
   "name": "echo-handler",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A NodeJS i18n-friendly way of managing messages stored in discrete JSON files",
   "main": "index.js",
   "directories": {
     "lib": "lib"
-  },  
+  },
   "scripts": {
     "test": "jest",
     "test-watch": "nodemon --exec 'npm test'"
