@@ -2,12 +2,14 @@ const EchoHandler = require('../lib/EchoHandler');
 describe('EchoHandler integration tests', () => {
   const mockLogger = spy => {
     return {
-      log: message => { spy.push(message) }
+      log: message => { spy.push(message) },
+      error: message => { spy.push(message) }
     };
   }
 
-  test ('valid item returns respective raw string, log output and exception object', () => {
+  test ('valid item returns respective raw string, log/error output and exception object', () => {
     let spy = [];
+    let errorSpy = [];
     let conf = { i18n: 'en', logger: mockLogger(spy) };
     const echoObject = { 'test': 'Test Message returned with: {0}, {1} and {2}' };
     const echo = new EchoHandler(echoObject, conf);
@@ -18,6 +20,9 @@ describe('EchoHandler integration tests', () => {
     echo.log('test', 'a', 'b', 'c');
     expect(spy[0]).toBe(message);
 
+    echo.error('test', 'a', 'b', 'c');
+    expect(spy[0]).toBe(message);
+
     let thrown = '';
     try { echo.throw('test', 'a', 'b', 'c'); }
     catch (e) { thrown = e.message; }
@@ -25,6 +30,27 @@ describe('EchoHandler integration tests', () => {
 
     // edge case for where arguments are expected but undefined
     expect(echo.raw('test')).toBe(echoObject.test);
+  });
+
+
+  test ('custom exception thrown', () => {
+    const spy = [];
+    const conf = {
+      i18n: 'en',
+      ExceptionClass: function (message, arr) {
+        arr.push(message);
+      },
+      exceptionOptions: spy
+    };
+    const echoObject = { 'test': 'test message' };
+    const echo = new EchoHandler(echoObject, conf);
+
+
+    try {
+      echo.throw('test');
+    } catch (e) {
+      expect(spy[0]).toBe('test message');
+    }
   });
 
   test('Invalid item requested', () => {

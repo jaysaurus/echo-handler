@@ -9,10 +9,12 @@ function validateClientOptions (opts) {
 module.exports = {
   configure: (clientOptions) => {
     let parentOps = {
+      ExceptionClass: undefined,
+      exceptionOptions: undefined,
+      factoryOverride: undefined,
       i18n: 'en',
       logger: console,
       messageFolder: undefined,
-      factoryOverride: undefined,
       regionalizer: defaultRegionalizer
     };
 

@@ -32,7 +32,7 @@ let echoHandler = require('echo-handler').configure({ messageFolder: `${__dirnam
 let echo = echoHandler.load('exampleMessages', 'en'); // load the English message set
 
 // IMPLEMENTATION
-echo.log('test'); // console log
+echo.log('test'); // console log, also supports echo.error, behaving
 let test = echo.raw('test'); // assign 'I am a test message' string to the `test` variable
 if (test !== 'I am a test message') {
   echo.throw('test'); // throw test as an Error, setting error instance's .message equal to 'I am a test message'
@@ -121,10 +121,33 @@ rawEcho.log('someMessage');
 - The full file path must be provided and no provision will be made for delineating i18n so use this functionality carefully!
 - A logger object may still be provided in the configuration object.  All other properties will be ignored.
 
+#### Using a custom Exception handler
+By specifying a custom ExceptionClass in the config, you can utilize your own objects for exception handling (by default, echo-handler throws the Error class).  For example, suppose you want to inject the message from the exception into an observer array:
+
+```javascript
+const spy = [];
+const conf = {
+  ExceptionClass: function (message, spyArg) {
+    spyArg.push(message);
+  },
+  exceptionOptions: spy,
+  i18n: 'en',
+  messageFolder:`${__dirname}/messages`
+};
+let echo = require('echo-handler').configure(conf);
+try {
+  echo.throw('someMessage');
+} catch (e) {
+  console.error(spy[0]); //the spy array contains the value of 'someMessage'
+}
+```
+
 #### Default Configuration
 these are the default configuration options for this application
 ```javascript
 {
+  ExceptionClass: undefined, // specify a custom Exception class to throw in place of the default JS Error class. The first option of which MUST be the string message from the echo-handler
+  exceptionOptions: undefined, // specify additional options for the ExceptionClass here.
   factoryOverride: undefined, // if supplied with an absolute file path, this will allow you to return a new instance of Echo-Handler, see above.
   i18n: 'en', // Default language used if client doesn't provide language code. Will also try to set echo-handler's own messages to that language (PLEASE FORK AND ADD MESSAGES!)    
   logger: console, // supply an object that has a .log(string) method and echo.log() will use that instead.
