@@ -32,7 +32,8 @@ let echoHandler = require('echo-handler').configure({ messageFolder: `${__dirnam
 let echo = echoHandler.load('exampleMessages', 'en'); // load the English message set
 
 // IMPLEMENTATION
-echo.log('test'); // console log, also supports echo.error, behaving
+echo.log('test'); // console log,
+echo.error('test'); // console.error(...)
 let test = echo.raw('test'); // assign 'I am a test message' string to the `test` variable
 if (test !== 'I am a test message') {
   echo.throw('test'); // throw test as an Error, setting error instance's .message equal to 'I am a test message'
@@ -150,7 +151,7 @@ these are the default configuration options for this application
   exceptionOptions: undefined, // specify additional options for the ExceptionClass here.
   factoryOverride: undefined, // if supplied with an absolute file path, this will allow you to return a new instance of Echo-Handler, see above.
   i18n: 'en', // Default language used if client doesn't provide language code. Will also try to set echo-handler's own messages to that language (PLEASE FORK AND ADD MESSAGES!)    
-  logger: console, // supply an object that has a .log(string) method and echo.log() will use that instead.
+  logger: console, // supply an object that has a .log(string) method and .error(string) method; echo.log() and echo.error() will use that object instead of console.
   messageFolder: undefined, // MANDATORY: the absolute location of your message files
 
   regionalizer: (item, language) => { // this is the default regionalizer
