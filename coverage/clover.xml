@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1510266687352" clover="3.2.0">
-  <project timestamp="1510266687352" name="All files">
-    <metrics statements="59" coveredstatements="59" conditionals="28" coveredconditionals="28" methods="19" coveredmethods="19" elements="106" coveredelements="106" complexity="0" loc="59" ncloc="59" packages="2" files="5" classes="5">
+<coverage generated="1510270227464" clover="3.2.0">
+  <project timestamp="1510270227464" name="All files">
+    <metrics statements="60" coveredstatements="60" conditionals="28" coveredconditionals="28" methods="19" coveredmethods="19" elements="107" coveredelements="107" complexity="0" loc="60" ncloc="60" packages="2" files="5" classes="5">
       <package name="echo-handler">
         <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <file name="index.js" path="/home/jay/codeBase/npm/echo-handler/index.js">
@@ -17,9 +17,9 @@
         </file>
       </package>
       <package name="echo-handler.lib">
-        <metrics statements="51" coveredstatements="51" conditionals="22" coveredconditionals="22" methods="17" coveredmethods="17"/>
+        <metrics statements="52" coveredstatements="52" conditionals="22" coveredconditionals="22" methods="17" coveredmethods="17"/>
         <file name="EchoHandler.js" path="/home/jay/codeBase/npm/echo-handler/lib/EchoHandler.js">
-          <metrics statements="20" coveredstatements="20" conditionals="9" coveredconditionals="9" methods="8" coveredmethods="8"/>
+          <metrics statements="21" coveredstatements="21" conditionals="9" coveredconditionals="9" methods="8" coveredmethods="8"/>
           <line num="1" count="3" type="stmt"/>
           <line num="3" count="3" type="stmt"/>
           <line num="4" count="17" type="stmt"/>
@@ -34,12 +34,13 @@
           <line num="20" count="17" type="stmt"/>
           <line num="21" count="23" type="cond" truecount="3" falsecount="0"/>
           <line num="26" count="17" type="stmt"/>
-          <line num="27" count="34" type="stmt"/>
-          <line num="28" count="2" type="stmt"/>
-          <line num="32" count="17" type="stmt"/>
-          <line num="33" count="7" type="stmt"/>
-          <line num="36" count="17" type="stmt"/>
-          <line num="37" count="14" type="cond" truecount="2" falsecount="0"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="30" count="17" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="34" count="17" type="stmt"/>
+          <line num="35" count="7" type="stmt"/>
+          <line num="38" count="17" type="stmt"/>
+          <line num="39" count="14" type="cond" truecount="2" falsecount="0"/>
         </file>
         <file name="EchoHandlerFactory.js" path="/home/jay/codeBase/npm/echo-handler/lib/EchoHandlerFactory.js">
           <metrics statements="24" coveredstatements="24" conditionals="11" coveredconditionals="11" methods="6" coveredmethods="6"/>
