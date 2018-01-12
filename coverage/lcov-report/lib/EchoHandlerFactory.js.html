@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for echo-handler/lib/EchoHandlerFactory.js</title>
+    <title>Code coverage report for lib/EchoHandlerFactory.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">echo-handler/lib</a> EchoHandlerFactory.js
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> EchoHandlerFactory.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">90.48% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/21</span>
+        <span class='fraction'>19/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>10/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>20/20</span>
+        <span class='fraction'>18/20</span>
       </div>
     </div>
   </div>
@@ -81,40 +81,40 @@
 36
 37
 38
-39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,16 +132,16 @@ module.exports = stampit({
     function i18nRequirement (item, lang) {
       try {
         if (typeof lang === 'string' &amp;&amp; lang.length === 2) {
-          if (typeof conf.messageFolder === 'string') {
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof conf.messageFolder === 'string') {
             switch (true) {
               case (typeof conf.regionalizer === 'function'):
                 return require(`${conf.messageFolder}/${conf.regionalizer(item, lang)}.json`);
-              case (typeof conf.regionalizer === 'undefined'):
-                return require(`${conf.messageFolder}/${helper.defaultRegionalizer(item, lang)}.json`);
+<span class="branch-1 cbranch-no" title="branch not covered" >              case (typeof conf.regionalizer === 'undefined'):</span>
+<span class="cstat-no" title="statement not covered" >                return require(`${conf.messageFolder}/${helper.defaultRegionalizer(item, lang)}.json`);</span>
               default:
                 echo.throw('regionalizerInvalid');
             }
-          } else echo.throw('folderInvalid');
+          } else <span class="cstat-no" title="statement not covered" >echo.throw('folderInvalid');</span>
         } else echo.throw('i18nInvalid', lang);
       } catch (e) { echo.throw('failed', item + (e.message ? ': ' + e.message : '.')); }
     }
@@ -163,10 +163,10 @@ module.exports = stampit({
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jan 12 2018 00:13:07 GMT+0000 (GMT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jan 12 2018 00:05:15 GMT+0000 (GMT)
 </div>
 </div>
-<script src="../../prettify.js"></script>
+<script src="../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -174,6 +174,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../../sorter.js"></script>
+<script src="../sorter.js"></script>
 </body>
 </html>

@@ -6,9 +6,15 @@ jest.mock(
   { virtual: true });
 
 jest.mock(
+    '../i18n/en.FakeMessages123_4.5.6.json',
+    () => { return { "test": "this is a test message" }; },
+    { virtual: true });
+
+jest.mock(
   '../i18n/en/FakeMessages.json',
   () => { return { "testModifiedPrefix": "this is a test message" }; },
   { virtual: true });
+
 
 describe('EchoHandlerFactory Test', () => {
   const mockLogger = spy => {
@@ -30,12 +36,17 @@ describe('EchoHandlerFactory Test', () => {
   };
 
   test('EchoHandlerFactory initialises and will return an EchoHandler from 4 namespaces deep on init', () => {
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     expect(echoFactory.load('a/b/c/FakeMessages').raw('test')).toBe('this is a test message');
   });
 
+  test('EchoHandlerFactory will figure eccentric filename', () => {
+    const echoFactory = EchoHandlerFactory(conf);
+    expect(echoFactory.load('FakeMessages123_4.5.6').raw('test')).toBe('this is a test message');
+  })
+
   test('EchoHandlerFactory will throw an exception if the i18n object is too long', () => {
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     try {
       echoFactory.load('a/b/c/FakeMessages', 'duff')
     } catch (e) {
@@ -45,7 +56,7 @@ describe('EchoHandlerFactory Test', () => {
   });
 
   test('EchoHandlerFactory will throw an exception if the user tries to call EchoHandler methods on factory', () => {
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     ['log', 'raw', 'throw'].forEach(dummy => {
       try {
         echoFactory[dummy]('mock', 'mock')
@@ -57,7 +68,7 @@ describe('EchoHandlerFactory Test', () => {
 
   test('EchoHandlerFactory will throw an exception if the regionalizer is not a function', () => {
     conf.regionalizer = 'BROKEN'
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     try {
       echoFactory.load('a/b/c/FakeMessages')
     } catch (e) {
@@ -67,8 +78,8 @@ describe('EchoHandlerFactory Test', () => {
   });
 
   test('EchoHandlerFactory will throw an exception if something unexpected happens', () => {
-    conf.regionalizer = () => { throw new Error(); }
-    const echoFactory = new EchoHandlerFactory(conf);
+    conf.regionalizer = () => { throw Error(); }
+    const echoFactory = EchoHandlerFactory(conf);
     try {
       echoFactory.load('a/b/c/FakeMessages')
     } catch (e) {
@@ -78,7 +89,7 @@ describe('EchoHandlerFactory Test', () => {
 
   test('EchoHandlerFactory will use english for its internal messages if i18n code is not listed', () => {
     conf.i18n = 'xx';
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     try { // load in a value that will force a default message to throw:
       echoFactory.raw('Echo is not instantiated');
     } catch (e) {
@@ -92,7 +103,7 @@ describe('EchoHandlerFactory Test', () => {
         /([a-z\d._-]+$)/gi,
         (match, fileName) => { return `${language}/${fileName}`; });
     }
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     const echo = echoFactory.load('FakeMessages', 'en');
     expect(echo.raw('testModifiedPrefix')).toBe('this is a test message');
   })
@@ -103,13 +114,15 @@ describe('EchoHandlerFactory Test', () => {
         /([a-z\d._-]+$)/gi,
         (match, fileName) => { return `${language}/${fileName}`; });
     }
-    const echoFactory = new EchoHandlerFactory(conf);
+    const echoFactory = EchoHandlerFactory(conf);
     try { // load in a value that will force a default message to throw:
       echoFactory.raw('Echo is not instantiated');
     } catch (e) {
       expect(e.message).toMatch('uninitialised echo-handler call detected')
     }
   })
+
+
 });
 // () => { return { "test": "this is a test message" }; },
 // { virtual: true })

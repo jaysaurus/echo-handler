@@ -1,4 +1,5 @@
 const EchoHandler = require('../lib/EchoHandler');
+
 describe('EchoHandler integration tests', () => {
   const mockLogger = spy => {
     return {
@@ -12,7 +13,7 @@ describe('EchoHandler integration tests', () => {
     let errorSpy = [];
     let conf = { i18n: 'en', logger: mockLogger(spy) };
     const echoObject = { 'test': 'Test Message returned with: {0}, {1} and {2}' };
-    const echo = new EchoHandler(echoObject, conf);
+    const echo = EchoHandler({ echoObject, conf });
     const message = 'Test Message returned with: a, b and c';
 
     expect(echo.raw('test', 'a', 'b', 'c')).toBe(message);
@@ -37,19 +38,41 @@ describe('EchoHandler integration tests', () => {
     const spy = [];
     const conf = {
       i18n: 'en',
-      ExceptionClass: function (message, arr) {
-        arr.push(message);
-      },
-      exceptionOptions: spy
     };
-    const echoObject = { 'test': 'test message' };
-    const echo = new EchoHandler(echoObject, conf);
-
+    const echoObject = { 'test': 'test message with {0}' };
+    const echo = EchoHandler({ echoObject, conf });
 
     try {
-      echo.throw('test');
+      echo.throw({
+        name: 'MockException',
+        level: 'Mock',
+        message: 'test',
+        htmlMessage: '<div>#test#</div>'
+      }, 'a variable argument');
     } catch (e) {
-      expect(spy[0]).toBe('test message');
+      expect(e.message).toBe('test message with a variable argument');
+      expect(e.htmlMessage).toBe('<div>test message with a variable argument</div>');
+      expect(e.stack).toContain('MockException: test message with a variable argument');
+    }
+
+    try {
+      echo.throw({
+        name: 'MockException',
+        level: 'Mock',
+        message: 'test',
+        htmlMessage: '<div>#test#</div>',
+        toString: function() {
+          return this.name
+        }
+      }, 'a variable argument');
+    } catch (e) {
+      expect(e.toString()).toBe('MockException');
+    }
+
+    try {
+      echo.throw({})
+    } catch (e) {
+      expect(e.html).toBeUndefined();
     }
   });
 
@@ -57,9 +80,29 @@ describe('EchoHandler integration tests', () => {
     let spy = [];
     let conf = { i18n: 'en', logger: mockLogger(spy) };
     const echo =
-      new EchoHandler(
+      EchoHandler(
         { 'test': 'Test Message returned with: {0}, {1} and {2}' },
         conf);
     expect(echo.raw('fakeMessage')).toBe('Could not find message: fakeMessage');
+  });
+
+  test ('custom exception thrown (deprecated)', () => {
+    const spy = [];
+    const conf = {
+      i18n: 'en',
+      ExceptionClass: function (message, arr) {
+        arr.push(message);
+      },
+      exceptionOptions: spy
+    };
+    const echoObject = { 'test': 'test message' };
+    const echo = EchoHandler({echoObject, conf});
+
+
+    try {
+      echo.throw('test');
+    } catch (e) {
+      expect(spy[0]).toBe('test message');
+    }
   });
 });

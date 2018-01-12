@@ -122,39 +122,46 @@ rawEcho.log('someMessage');
 - The full file path must be provided and no provision will be made for delineating i18n so use this functionality carefully!
 - A logger object may still be provided in the configuration object.  All other properties will be ignored.
 
-#### Using a custom Exception handler
-By specifying a custom ExceptionClass in the config, you can utilize your own objects for exception handling (by default, echo-handler throws the Error class).  For example, suppose you want to inject the message from the exception into an observer array:
+#### Supplying custom Errors
+When throwing an error, you may supply an object to setup a Crockford-inspired custom Error Handler.  This object should adhere to the rules described in the example below:
 
 ```javascript
-const spy = [];
+const errorObject = {
+  name: 'MockException', // NB: the NAME of your custom Exception and NOT the name of your error message!
+  level: 'Mock', // this property is at your discretion.
+  message: 'test', // NB: the NAME of the error message to load with echo-handler!
+  htmlMessage: '<div>#test#</div>', //
+  toString: function () { ... } // optional toString call, if you don't supply, it'll defer to the default Error object;  
+};
+```
+you may supply the above object with additional methods and properties as you see fit.  They will be exposed in catch blocks accordingly.  Simply supply the custom error object to the echo throw call and `echo-handler` will do the rest!
+
+```javascript
 const conf = {
-  ExceptionClass: function (message, spyArg) {
-    spyArg.push(message);
-  },
-  exceptionOptions: spy,
   i18n: 'en',
   messageFolder:`${__dirname}/messages`
 };
 let echo = require('echo-handler').configure(conf);
 try {
-  echo.throw('someMessage');
+  echo.throw(errorObject, 'a', 'b', 'c');
 } catch (e) {
-  console.error(spy[0]); //the spy array contains the value of 'someMessage'
+  console.error(e.stack); //the spy array contains the value of 'someMessage'
 }
 ```
+**Note:** `ExceptionClass` and `exceptionOptions` are deprecated in favour of the approach supplied above.  Though neither will be removed in the near-future, it is strongly advised that you swap them out where applicable.
 
 #### Default Configuration
 these are the default configuration options for this application
 ```javascript
 {
-  ExceptionClass: undefined, // specify a custom Exception class to throw in place of the default JS Error class. The first option of which MUST be the string message from the echo-handler
-  exceptionOptions: undefined, // specify additional options for the ExceptionClass here.
+  *DEPRECATED* ExceptionClass: undefined, // specify a custom Exception class to throw in place of the default JS Error class. The first option of which MUST be the string message from the echo-handler
+  *DEPRECATED* exceptionOptions: undefined, // specify additional options for the ExceptionClass here.
   factoryOverride: undefined, // if supplied with an absolute file path, this will allow you to return a new instance of Echo-Handler, see above.
   i18n: 'en', // Default language used if client doesn't provide language code. Will also try to set echo-handler's own messages to that language (PLEASE FORK AND ADD MESSAGES!)    
   logger: console, // supply an object that has a .log(string) method and .error(string) method; echo.log() and echo.error() will use that object instead of console.
   messageFolder: undefined, // MANDATORY: the absolute location of your message files
 
-  regionalizer: (item, language) => { // this is the default regionalizer
+  regionalizer: (item, language) => { // the default regionalizer as an aide to understanding.
     return item.replace(
       /([a-z\d._-]+$)/gi,
       (match, fileName) => { return `${language}.${fileName}`; });
