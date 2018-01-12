@@ -130,7 +130,7 @@ const errorObject = {
   name: 'MockException', // NB: the NAME of your custom Exception and NOT the name of your error message!
   level: 'Mock', // this property is at your discretion.
   message: 'test', // NB: the NAME of the error message to load with echo-handler!
-  htmlMessage: '<div>#test#</div>', //
+  htmlMessage: '<div>#test#</div>', // the name of the error message encapsulated in "#" tags will be replaced with the desired echo-handler error message.  You may use the #placeHolder# variable multiple times in an htmlMessage should you wish.
   toString: function () { ... } // optional toString call, if you don't supply, it'll defer to the default Error object;  
 };
 ```
