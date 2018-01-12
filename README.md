@@ -145,7 +145,7 @@ let echo = require('echo-handler').configure(conf);
 try {
   echo.throw(errorObject, 'a', 'b', 'c');
 } catch (e) {
-  console.error(e.stack); //the spy array contains the value of 'someMessage'
+  console.error(e.stack);
 }
 ```
 **Note:** `ExceptionClass` and `exceptionOptions` are deprecated in favour of the approach supplied above.  Though neither will be removed in the near-future, it is strongly advised that you swap them out where applicable.
